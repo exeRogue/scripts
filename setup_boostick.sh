@@ -12,12 +12,15 @@ fi
 
 umount "$2"
 echo "Formating usbstick"
-dd if=/dev/zero of="$2"
+if [[ "$3" = "-z" ]]; then
+	echo "	Filling zeros to usbstick"
+	dd if=/dev/zero of=$"2" bs=4096
+fi
 
 echo "	Making usbstick Fat32"
-mkfs.vfat "$2"
+mkfs -t vfat "$2"
 
-dd if=~"$1" of="$2" bs=2MB && sync
+dd if="$1" of="$2" bs=4096 && sync
 
 if [[ $? -eq 0 ]]; then
 	echo "The process ended correctly"
