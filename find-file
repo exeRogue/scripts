@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ ! -d "$1" ]]; then
+	echo "First parameter is not a directory"
+fi
+
+if [[ -z "$2" ]]; then
+	echo "Search paramter is empty"
+fi
+
+find $1 -name *$2* -type f
