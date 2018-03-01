@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]; then
+	echo "Delimiter is empty"
+fi
+
+if [[ -z "$2" ]]; then
+	echo "Number of column is empty"
+fi
+
+if [[ ! -f "$3" ]]; then
+	echo "Thrird parameter isnt a file"
+fi
+
+cut -d "$1" -f "$2" "$3"
