@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]; then
+	echo "Container id is empty"
+  exit 0
+fi
+
+if [[ -z "$2" ]]; then
+	echo "DB name is empty"
+  exit 0
+fi
+
+docker exec $1 /usr/bin/mysqldump -u root --password=root $2  | gzip > "$2_$(date +%s).sql.gz"
+
+exit 0
