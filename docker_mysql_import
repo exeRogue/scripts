@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]; then
+	echo "Container id is empty"
+  exit 0
+fi
+
+if [[ -z "$2" ]]; then
+	echo "DB name is empty"
+  exit 0
+fi
+
+
+
+if [[ -z "$3" ]]; then
+	echo ".sql.gz is empty"
+  exit 0
+fi
+
+zcat $3 | docker exec -i $1 mysql -uroot -proot $2
+
+exit 0
