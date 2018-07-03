@@ -1,0 +1,12 @@
+#!bin/bash
+
+if [[ -z $1 ]]; then
+	echo "Comand is empty"
+  exit 0
+fi
+
+if [[ -z $2 ]]; then
+	echo "Keyword is empty"
+fi
+
+adb shell pm list packages | awk -F[:] '{print $2}' | grep $2 | xargs adb shell pm $1
